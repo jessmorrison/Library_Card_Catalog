@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-
+using static System.Net.Mime.MediaTypeNames;
 
 namespace LibraryCardCatalog
 {
@@ -32,7 +32,6 @@ namespace LibraryCardCatalog
             {
                 byte[] readBuffer = File.ReadAllBytes(pathString); //TODO comeback to this part
             }
-
             try
             {
                 byte[] readBuffer = System.IO.File.ReadAllBytes(pathString); //write bytes in order to read bytes
@@ -42,7 +41,7 @@ namespace LibraryCardCatalog
                 }
                 Console.WriteLine();
             }
-            catch (System.IO.IOException e)
+            catch (IOException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -67,15 +66,12 @@ namespace LibraryCardCatalog
                 {
                     Console.WriteLine(b.ToString());
                 }
-
             }
             catch
             {
                 Console.WriteLine("You have not added any books to this list.\nPlease add books to continue");
-            }
-                
+            } 
             file.Close();
-
             Console.ReadLine();
         }
 
@@ -118,8 +114,6 @@ namespace LibraryCardCatalog
                 {
                     addAnotherBook = true;
                 }
-
-                
             } while (addAnotherBook == true);
 
                 //------UI END------
@@ -134,6 +128,9 @@ namespace LibraryCardCatalog
                 writer.Serialize(file, bookList);
                 file.Close();  
         }
-        public void Save() { } //prob not void
+        public void Save()
+        {
+
+        }
     }
 }
