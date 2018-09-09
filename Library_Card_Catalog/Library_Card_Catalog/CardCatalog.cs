@@ -13,7 +13,9 @@ namespace LibraryCardCatalog
     class CardCatalog
     {
         private string _filename;
+        List<Book> bookList = new List<Book>();
         //private Book[] books;
+
 
         public CardCatalog(string filename)
         {
@@ -83,8 +85,6 @@ namespace LibraryCardCatalog
 
             Console.Clear();
 
-            List<Book> bookList = new List<Book>();
-
             bool addAnotherBook = true;
             do
             {
@@ -100,7 +100,9 @@ namespace LibraryCardCatalog
                 int published = int.Parse(Console.ReadLine());
                 //
                 bookList.Add(new Book { Title = bookTitle, Author = author, Published = published });
+
                 Console.Clear();
+
                 Console.WriteLine("Book Successfully Added!\n" +
                     "Add Another Book? Y/N");
                 string yesOrNo = Console.ReadLine();
