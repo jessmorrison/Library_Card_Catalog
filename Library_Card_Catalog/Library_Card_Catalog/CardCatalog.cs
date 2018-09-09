@@ -79,17 +79,15 @@ namespace LibraryCardCatalog
 
             //ask for number of books they would like to add
             Console.Clear();
-            Console.WriteLine("Please Specify The Number of Books You Would Like To Add To the Catalog: \n");
-                int TotalBooks = int.Parse(Console.ReadLine());
-            Console.Clear();
-
+           
             //TODO check to see if list exists, if it does call it in (set Totalbooks?), else create new list
             //Create new list..
             List<Book> bookList = new List<Book>();
-            for (int index = 0; index < TotalBooks; index++)
+
+            bool addAnotherBook = true;
+            do
             {
-                //
-                Console.WriteLine("Please Enter Book #" + (index + 1) + "'s information" );
+                Console.Clear();
                 //
                 Console.WriteLine("Please Enter A book Title: ");
                 string bookTitle = Console.ReadLine();
@@ -102,12 +100,21 @@ namespace LibraryCardCatalog
                 //
                 bookList.Add(new Book { Title = bookTitle, Author = author, Published = published });
                 Console.Clear();
+                Console.WriteLine("Book Successfully Added!\n" +
+                    "Add Another Book? Y/N");
+                string yesOrNo = Console.ReadLine();
+                if (yesOrNo == "n" || yesOrNo == "N")
+                {
+                    addAnotherBook = false;
+                } else
+                {
+                    addAnotherBook = true;
+                }
+
                 
-            }
+            } while (addAnotherBook == true);
 
                 //------UI END------
-                Console.ReadLine();
-
                 XmlSerializer writer = new XmlSerializer(typeof(List<Book>));
 
                 string folderName = @"C:\LibraryCardCatalog\";

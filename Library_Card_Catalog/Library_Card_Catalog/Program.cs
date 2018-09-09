@@ -27,13 +27,10 @@ namespace LibraryCardCatalog
                 result = Console.ReadLine();
                 if (result == "1")
                 {
-                    
-                        cc.ListBooks("");
-                   
+                    cc.ListBooks("");
                 }
                 if (result == "2")
                 {
-
                     cc.AddBook("");
                 }
                 if (result == "3")
