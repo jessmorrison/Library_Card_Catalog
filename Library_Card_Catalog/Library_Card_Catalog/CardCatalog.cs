@@ -73,32 +73,33 @@ namespace LibraryCardCatalog
 
         public void AddBook(string books)
         {
+            //call in filename for pathing
             string filename;
             filename = _filename;
-            Console.Clear();
 
+            //ask for number of books they would like to add
+            Console.Clear();
             Console.WriteLine("Please Specify The Number of Books You Would Like To Add To the Catalog: \n");
                 int TotalBooks = int.Parse(Console.ReadLine());
-
             Console.Clear();
 
+            //TODO check to see if list exists, if it does call it in (set Totalbooks?), else create new list
+            //Create new list..
             List<Book> bookList = new List<Book>();
-
-          
             for (int index = 0; index < TotalBooks; index++)
             {
-
+                //
                 Console.WriteLine("Please Enter Book #" + (index + 1) + "'s information" );
-
+                //
                 Console.WriteLine("Please Enter A book Title: ");
                 string bookTitle = Console.ReadLine();
-
+                //
                 Console.WriteLine("Please Enter The Book's Author: ");
                 string author = Console.ReadLine();
-
+                //
                 Console.WriteLine("Please Enter The Published Year: ");
                 int published = int.Parse(Console.ReadLine());
-
+                //
                 bookList.Add(new Book { Title = bookTitle, Author = author, Published = published });
                 Console.Clear();
                 

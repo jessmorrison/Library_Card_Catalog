@@ -41,13 +41,11 @@ namespace LibraryCardCatalog
                     cc.Save();
                 }
             }
-
             Console.ReadLine();
         }
 
         private static string SetFileName()
         {
-
             string Username;
             Console.WriteLine("Welcome, Please enter a username: ");
             Username = (Console.ReadLine());
