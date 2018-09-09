@@ -113,17 +113,15 @@ namespace LibraryCardCatalog
                 }
             } while (addAnotherBook == true);
 
-            //------UI END------    
             XmlSerializer writer = new XmlSerializer(typeof(List<Book>));
 
             string folderName = @"C:\LibraryCardCatalog\";
             string pathString = Path.Combine(folderName, "LibraryCardCatalog_Data");
             pathString = Path.Combine(pathString, filename);
 
-            FileStream file = File.Create(pathString);
-
-            writer.Serialize(file, bookList);
-            file.Close();
+             FileStream file = File.Create(pathString);
+             writer.Serialize(file, bookList);
+             file.Close();
         }
 
         public void Save()
