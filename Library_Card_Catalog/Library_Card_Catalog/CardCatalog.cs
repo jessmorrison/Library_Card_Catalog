@@ -60,12 +60,20 @@ namespace LibraryCardCatalog
             XmlSerializer reader = new XmlSerializer(typeof(List<Book>));
             StreamReader file = new StreamReader(@"C:\LibraryCardCatalog\LibraryCardCatalog_Data\" + filename);
 
-            List<Book> bookList = (List<Book>)reader.Deserialize(file);
+            try
+            {
+                List<Book> bookList = (List<Book>)reader.Deserialize(file);
                 foreach (Book b in bookList)
                 {
                     Console.WriteLine(b.ToString());
                 }
 
+            }
+            catch
+            {
+                Console.WriteLine("You have not added any books to this list.\nPlease add books to continue");
+            }
+                
             file.Close();
 
             Console.ReadLine();
