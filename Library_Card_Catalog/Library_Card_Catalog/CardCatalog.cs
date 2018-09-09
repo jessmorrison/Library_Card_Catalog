@@ -81,11 +81,8 @@ namespace LibraryCardCatalog
             string filename;
             filename = _filename;
 
-            //ask for number of books they would like to add
             Console.Clear();
-           
-            //TODO check to see if list exists, if it does call it in (set Totalbooks?), else create new list
-            //Create new list..
+
             List<Book> bookList = new List<Book>();
 
             bool addAnotherBook = true;
@@ -116,18 +113,19 @@ namespace LibraryCardCatalog
                 }
             } while (addAnotherBook == true);
 
-                //------UI END------
-                XmlSerializer writer = new XmlSerializer(typeof(List<Book>));
+            //------UI END------    
+            XmlSerializer writer = new XmlSerializer(typeof(List<Book>));
 
-                string folderName = @"C:\LibraryCardCatalog\";
-                string pathString = Path.Combine(folderName, "LibraryCardCatalog_Data");
-                pathString = Path.Combine(pathString, filename);
+            string folderName = @"C:\LibraryCardCatalog\";
+            string pathString = Path.Combine(folderName, "LibraryCardCatalog_Data");
+            pathString = Path.Combine(pathString, filename);
 
-                FileStream file = File.Create(pathString);
+            FileStream file = File.Create(pathString);
 
-                writer.Serialize(file, bookList);
-                file.Close();  
+            writer.Serialize(file, bookList);
+            file.Close();
         }
+
         public void Save()
         {
 
