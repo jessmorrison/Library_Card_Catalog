@@ -20,20 +20,19 @@ namespace LibraryCardCatalog
             _filename = filename;
 
             string folderName = @"C:\LibraryCardCatalog\";
-            string pathString = System.IO.Path.Combine(folderName, "LibraryCardCatalog_Data");
-            System.IO.Directory.CreateDirectory(pathString);
-            pathString = System.IO.Path.Combine(pathString, filename);
+            string pathString = Path.Combine(folderName, "LibraryCardCatalog_Data");
+            Directory.CreateDirectory(pathString);
+            pathString = Path.Combine(pathString, filename);
 
-            if (!System.IO.File.Exists(pathString))
+            if (!File.Exists(pathString))
             {
-                using (System.IO.FileStream fs = System.IO.File.Create(pathString)) { }
+                using (FileStream fs = File.Create(pathString)) { }
             }
             else
             {
-                byte[] readBuffer = System.IO.File.ReadAllBytes(pathString); //TODO comeback to this part
+                byte[] readBuffer = File.ReadAllBytes(pathString); //TODO comeback to this part
             }
 
-            /* // Read and display the data from your file.
             try
             {
                 byte[] readBuffer = System.IO.File.ReadAllBytes(pathString); //write bytes in order to read bytes
@@ -46,12 +45,13 @@ namespace LibraryCardCatalog
             catch (System.IO.IOException e)
             {
                 Console.WriteLine(e.Message);
-            }*/
+            }
         }
 
         public void ListBooks(string listbooks)
         {
             Console.Clear();
+
             Console.WriteLine("Here is a complete List of Books In List: \n\n");
 
             string filename;
@@ -110,7 +110,7 @@ namespace LibraryCardCatalog
                 XmlSerializer writer = new XmlSerializer(typeof(List<Book>));
 
                 string folderName = @"C:\LibraryCardCatalog\";
-                string pathString = System.IO.Path.Combine(folderName, "LibraryCardCatalog_Data");
+                string pathString = Path.Combine(folderName, "LibraryCardCatalog_Data");
                 pathString = Path.Combine(pathString, filename);
 
                 FileStream file = File.Create(pathString);
