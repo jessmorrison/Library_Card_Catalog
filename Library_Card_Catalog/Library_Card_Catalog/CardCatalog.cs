@@ -13,8 +13,13 @@ namespace LibraryCardCatalog
     class CardCatalog
     {
         private string _filename;
-        List<Book> bookList = new List<Book>();
-        //private Book[] books;
+        public static List<Book> bookList { get; set; } = new List<Book>();
+
+
+
+
+        //List<Book> bookList = new List<Book>();
+
 
 
         public CardCatalog(string filename)
@@ -32,22 +37,30 @@ namespace LibraryCardCatalog
             }
             else
             {
-                byte[] readBuffer = File.ReadAllBytes(pathString); //TODO comeback to this part
-            }
-            try
-            {
-                byte[] readBuffer = System.IO.File.ReadAllBytes(pathString); //write bytes in order to read bytes
-                foreach (byte b in readBuffer)
-                {
-                    Console.Write(b + " ");
-                }
-                Console.WriteLine();
-            }
-            catch (IOException e)
-            {
-                Console.WriteLine(e.Message);
+                //TEST TO SEE IF CODE EXISTS, IT DOES (Currently)
+                //Console.WriteLine("File \"{0}\" already exists.", pathString);
+               // return;
             }
         }
+
+
+        /*
+        public void initializeBooks()
+        {
+            string filename;
+            filename = _filename;
+
+            XmlSerializer reader = new XmlSerializer(typeof(List<Book>));
+            StreamReader file = new StreamReader(@"C:\LibraryCardCatalog\LibraryCardCatalog_Data\" + filename);
+
+            List<Book> bookList = (List<Book>)reader.Deserialize(file);
+                foreach (Book b in bookList)
+                {
+                    Console.WriteLine(b.ToString());
+                }
+           
+        }*/
+
 
         public void ListBooks(string listbooks)
         {
@@ -77,19 +90,27 @@ namespace LibraryCardCatalog
             Console.ReadLine();
         }
 
-        public void AddBook(string books)
+
+
+
+        public void AddBook()
         {
-            //call in filename for pathing
+            
             string filename;
             filename = _filename;
 
-            Console.Clear();
-
+            
             bool addAnotherBook = true;
             do
             {
                 Console.Clear();
                 //
+                foreach (Book book in bookList)
+                {
+                    Console.WriteLine(book);
+                    Console.ReadLine();
+                }
+
                 Console.WriteLine("Please Enter A book Title: ");
                 string bookTitle = Console.ReadLine();
                 //
@@ -99,7 +120,11 @@ namespace LibraryCardCatalog
                 Console.WriteLine("Please Enter The Published Year: ");
                 int published = int.Parse(Console.ReadLine());
                 //
-                bookList.Add(new Book { Title = bookTitle, Author = author, Published = published });
+         
+                 bookList.Add( new Book { Title = bookTitle, Author = author, Published = published });
+
+
+
 
                 Console.Clear();
 
@@ -121,9 +146,9 @@ namespace LibraryCardCatalog
             string pathString = Path.Combine(folderName, "LibraryCardCatalog_Data");
             pathString = Path.Combine(pathString, filename);
 
-             FileStream file = File.Create(pathString);
-             writer.Serialize(file, bookList);
-             file.Close();
+            FileStream file = File.Create(pathString);
+            writer.Serialize(file, bookList);
+            file.Close();
         }
 
         public void Save()

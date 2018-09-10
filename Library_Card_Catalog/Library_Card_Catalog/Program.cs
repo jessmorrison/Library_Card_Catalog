@@ -12,8 +12,9 @@ namespace LibraryCardCatalog
         static void Main(string[] args)
         {
             string fileName = SetFileName();
-
+            
             CardCatalog cc = new CardCatalog(fileName);
+
             string result = "";
             while (result != "3")
             {
@@ -32,7 +33,7 @@ namespace LibraryCardCatalog
                 }
                 if (result == "2")
                 {
-                    cc.AddBook("");
+                    cc.AddBook();
                 }
                 if (result == "3")
                 {
