@@ -29,7 +29,7 @@ namespace LibraryCardCatalog
                 result = Console.ReadLine();
                 if (result == "1")
                 {
-                    cc.ListBooks("");
+                    cc.ListBooks();
                 }
                 if (result == "2")
                 {
@@ -40,7 +40,7 @@ namespace LibraryCardCatalog
                     cc.Save();
                 }
             }
-            Console.ReadLine();
+            
         }
 
         private static string SetFileName()

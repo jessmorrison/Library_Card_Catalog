@@ -16,8 +16,6 @@ namespace LibraryCardCatalog
         public static List<Book> bookList { get; set; } = new List<Book>();
 
 
-
-
         //List<Book> bookList = new List<Book>();
 
 
@@ -62,7 +60,7 @@ namespace LibraryCardCatalog
         }*/
 
 
-        public void ListBooks(string listbooks)
+        public void ListBooks()
         {
             Console.Clear();
 
@@ -89,28 +87,16 @@ namespace LibraryCardCatalog
             file.Close();
             Console.ReadLine();
         }
-
-
-
-
         public void AddBook()
         {
-            
             string filename;
             filename = _filename;
 
-            
             bool addAnotherBook = true;
             do
             {
                 Console.Clear();
                 //
-                foreach (Book book in bookList)
-                {
-                    Console.WriteLine(book);
-                    Console.ReadLine();
-                }
-
                 Console.WriteLine("Please Enter A book Title: ");
                 string bookTitle = Console.ReadLine();
                 //
@@ -121,10 +107,7 @@ namespace LibraryCardCatalog
                 int published = int.Parse(Console.ReadLine());
                 //
          
-                 bookList.Add( new Book { Title = bookTitle, Author = author, Published = published });
-
-
-
+                bookList.Add( new Book { Title = bookTitle, Author = author, Published = published });
 
                 Console.Clear();
 
@@ -153,7 +136,17 @@ namespace LibraryCardCatalog
 
         public void Save()
         {
+            string filename;
+            filename = _filename;
+            XmlSerializer writer = new XmlSerializer(typeof(List<Book>));
 
+            string folderName = @"C:\LibraryCardCatalog\";
+            string pathString = Path.Combine(folderName, "LibraryCardCatalog_Data");
+            pathString = Path.Combine(pathString, filename);
+
+            FileStream file = File.Create(pathString);
+            writer.Serialize(file, bookList);
+            file.Close();
         }
     }
 }
